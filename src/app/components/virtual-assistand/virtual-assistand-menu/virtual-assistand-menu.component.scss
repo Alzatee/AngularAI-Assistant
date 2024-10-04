@@ -1,0 +1,132 @@
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar {
+  padding: 15px 10px;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 260px;
+  max-width: 260px;
+  background: #EEEEEE;
+  color: #222222;
+  transition: all 0.2s linear;
+  z-index: 2000;
+}
+
+#sidebar a,
+#sidebar a:hover,
+#sidebar a:focus {
+  color: inherit;
+}
+
+#sidebar.active {
+  margin-left: -260px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #EEEEEE;
+}
+
+#sidebar ul.components {
+  padding: 20px;
+}
+
+#sidebar ul.components li {
+  margin-top: 10px;
+}
+
+#sidebar ul.components span {
+  padding: 2px 5px;
+}
+
+#sidebar ul p {
+  color: #222222;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: #222222;
+  background: #e1e1e1;
+  border-radius: 7px;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #222222;
+  background: #EEEEEE;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+a[aria-expanded="false"]::before,
+a[aria-expanded="true"]::before {
+  content: '\e259';
+  display: block;
+  position: absolute;
+  right: 20px;
+  font-size: 0.6em;
+}
+
+a[aria-expanded="true"]::before {
+  content: '\e260';
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #EEEEEE;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  min-height: 100vh;
+  transition: all 0.3s;
+  width: 100%;
+  overflow: hidden;
+}
+
+#content .header {
+  padding: 20px;
+}
+
+.container-chats {
+  padding: 0px 24px;
+}

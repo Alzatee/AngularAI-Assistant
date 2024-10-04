@@ -1,0 +1,59 @@
+<div class="input-chat-container" #inputChatContainer>
+    
+    <div class="container-chat-input-dropzone">
+        <!-- Contenedor de vista previa con botón de eliminación -->
+        @if (file) {
+            <div class="preview">
+                @if (isImage(file)) {
+                    <img [src]="fileUrl" alt="Vista previa" />
+                } @else {
+                    <div class="file-preview">
+                        <mat-icon>description</mat-icon>
+                        <span title="{{file.name}}">{{ file.name }}</span>
+                    </div>
+                }
+                <button class="btn-remove" (click)="removeFile()">
+                    <mat-icon class="icon-close">close</mat-icon>
+                </button>
+            </div>
+        }
+
+        <!-- Contenedor del input con íconos -->
+        <div class="input-group">
+            @if (!isBlocked) {
+                <button class="btn btn-outline-secondary button-load-file" type="button" (click)="fileInput.click()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+            } @else {
+                <button class="btn btn-outline-secondary button-load-file" type="button">
+                    <mat-icon>block</mat-icon>
+                </button>
+            }
+
+            <textarea #txtTextarea name="textarea-chat" [(ngModel)]="text" [placeholder]="appTexts.PlaceholderChatInput"
+                class="form-control drop-target input-chat" (keydown.enter)="sendMessage(txtTextarea.value)"
+                (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+                autocomplete="off" [attr.maxlength]="maxChatMessageLength" (input)="adjustTextareaHeight(txtTextarea)">
+            </textarea>
+
+            @if (!isBlocked) {
+                <button class="btn btn-outline-secondary input-group-text button-send-message" type="button" (click)="sendMessage(txtTextarea.value)">
+                    <mat-icon>arrow_circle_up</mat-icon>
+                </button>
+            } @else {
+                <button class="btn btn-outline-secondary button-send-message" type="button">
+                    <mat-icon>stop_circle</mat-icon>
+                </button>
+            }
+            
+            <input type="file" #fileInput (change)="onFileChange($event)" [accept]="allowedFileTypes"
+                style="display: none;" />
+            <ngx-file-drop (onFileDrop)="onFileDrop($event)" (onFileOver)="fileOver($event)"
+                (onFileLeave)="fileLeave($event)" class="drop-zone" (dragover)="onDragOver($event)"
+                (drop)="onDrop($event)" accept=".pdf">
+                Arrastra y suelta un archivo aquí
+            </ngx-file-drop>
+        </div>
+    </div>
+
+</div>

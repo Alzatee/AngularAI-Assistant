@@ -1,0 +1,46 @@
+@mixin set-background-theme($background) {
+  background: $background !important;
+}
+@mixin set-color-theme($color) {
+  color: $color !important;
+}
+@mixin set-border-color-theme($color) {
+  border-color: $color !important;
+}
+  
+.dark-theme {
+  body, .card, #content, .container-input-chat {
+    @include set-background-theme($dark-background);
+    @include set-color-theme($dark-text-color);
+  }
+  #sidebar, .sidebar-header {
+    @include set-background-theme($dark-background-navbar);
+    @include set-color-theme($dark-text-color);
+  }
+  .mat-icon, p, span {
+    @include set-color-theme($dark-text-color);
+  }
+  .input-group input, .input-group button, .input-group span, .input-chat, input:focus, .pinned-message, .message-user-text {
+    @include set-background-theme($dark-light);
+    @include set-color-theme($dark-text-color);
+    @include set-border-color-theme($dark-light);
+  }
+  .dropdown-menu, .dropdown ul, .dropdown-item, .dropdown-toggle, .dropdown-toggle:active {
+    @include set-background-theme($dark-light);
+    @include set-color-theme($dark-text-color);
+    @include set-border-color-theme(#f3f3f329);
+  }
+  textarea::placeholder {
+    @include set-color-theme($dark-text-color);
+  }
+  .container-chat-input-dropzone .preview {
+    @include set-background-theme(rgb(115 114 114 / 23%));
+  }
+  #sidebar ul li a:hover, .dropdown-button-toggle {
+    @include set-background-theme(#222222);
+    @include set-color-theme(#e7e7e7);
+  }
+  .content-text-chat {
+    @include set-background-theme(#2F2F2F);
+  }
+}

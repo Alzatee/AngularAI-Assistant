@@ -1,0 +1,17 @@
+.page-404 {
+    padding: 40px 0;
+    background: #fff;
+    font-family: 'Roboto', serif;
+    height: 100vh;
+}
+
+.four_zero_four_bg {
+    background-image: url('/images/404/not-found-page.gif');
+    height: 400px;
+    background-position: center;
+}
+
+.page-404 img { width: 100%; }
+.four_zero_four_bg h1 { font-size: 80px; }
+.contant_box_404 { margin-top: -50px; }
+.contant_box_404 h3 { font-weight: 100;} 

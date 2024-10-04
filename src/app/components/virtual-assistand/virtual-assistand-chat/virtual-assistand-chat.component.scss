@@ -1,0 +1,234 @@
+.card {
+  background-color: #ffffff;
+  border: none;
+}
+
+.content-chat {
+  min-height: 79vh;
+  height: 79vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content-text-chat {
+  background: #f3f3f3;
+  border-radius: 7px;
+}
+
+.container-input-chat {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  background: #FFFFFF;
+  padding: 20px 0px;
+}
+
+.chat {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+}
+
+.chat-file-icon {
+  height: 27px;
+  font-size: 30px;
+  margin-right: 7px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.presentation-text {
+  text-align: center;
+  color: #888888;
+}
+
+.ai-chatbot-gemini {
+  background: linear-gradient(45deg, #0078D4, #6a0dad, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.ai-chatbot-gpt {
+  background: linear-gradient(45deg, #34d058, #00bfae, #0070f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.ai-chatbot-claude {
+  background: linear-gradient(45deg, #ff6b6b, #ff9f43, #4a90e2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.pinned-message {
+  width: 100%;
+  background: #f3f3f3;
+  border-radius: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  z-index: 1000;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-user {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.message-user-text {
+  background: #f3f3f3;
+  color: #222222;
+  text-align: right;
+  border-radius: 20px;
+  width: auto;
+  max-width: 70%;
+  padding: .625rem 1.25rem;
+}
+
+.message-virtual-assistand {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.icon-message-virtual-assistand {
+  width: 25px;
+  height: 25px;
+  background: #f3f3f3;
+  border-radius: 200px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.icon {
+  border-radius: 200px;
+  width: 75%;
+}
+
+.message-virtual-assistand-text {
+  background: transparent;
+  color: #222222;
+  text-align: left;
+  border-radius: 20px;
+  padding: 0 1rem;
+  width: auto;
+  margin-bottom: 0;
+  // visibility: hidden;
+}
+
+.message-virtual-assistand-text.animated {
+  visibility: visible;
+}
+
+.time-response-api-text {
+  font-size: 0.8em;
+  color: rgb(34 165 253 / 92%) !important;
+}
+
+.content-message-virtual-assistand {
+  // background: red;
+  max-width: 95%;
+  .letter {
+    display: inline-block;
+  }
+}
+
+.input-chat-container {
+  padding: 0px 20px;
+  width: 80%;
+  margin: auto;
+}
+
+.speak-text-btn {
+  padding: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.speak-text-btn .mat-icon {
+  font-size: 15px;
+  padding: 2px 5px 2px 0px;
+}
+
+/* ---------------------------------------------------
+    Dot Collision Animation
+----------------------------------------------------- */
+.loading-three-dots-animation {
+  border-radius: 200px;
+  position: relative;
+  width: 60px;
+  background: #f3f3f3;
+  left: 5px;
+}
+
+.snippet {
+  position: relative;
+  border-radius: 16px;
+  left: 25px;
+  top: 10px;
+}
+
+.dot-collision {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 5px;
+  background: #222222;
+  color: #222222;
+}
+
+.dot-collision::before,
+.dot-collision::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-collision::before {
+  left: -7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 5px;
+  background: #222222;
+  color: #222222;
+  animation: dot-collision-before 1s infinite ease-in;
+}
+
+.dot-collision::after {
+  left: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 5px;
+  background: #222222;
+  color: #222222;
+  animation: dot-collision-after 1s infinite ease-in;
+  animation-delay: 0.3s;
+}
+  
+@keyframes dot-collision-before {
+  0%, 50%, 75%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+}
+@keyframes dot-collision-after {
+  0%, 50%, 75%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+}

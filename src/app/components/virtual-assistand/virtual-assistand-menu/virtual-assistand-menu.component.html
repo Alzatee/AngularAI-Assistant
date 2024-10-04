@@ -1,0 +1,110 @@
+<section class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between">
+                <button type="button" class="icon-container-button" id="sidebarCollapse" (click)="collapseMenu()">
+                    <mat-icon [title]="appTexts.CloseSidebarText">menu</mat-icon>
+                </button>
+
+                <div class="d-flex">
+                    <div class="btn-group">
+                        <button class="icon-container-button px-2" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <mat-icon [title]="appTexts.ConfigText">settings</mat-icon>
+                        </button>
+                        <ul class="dropdown-menu p-1">
+                            <li class="d-flex justify-content-start m-1">
+                                <span class="align-items-center d-flex px-2">{{appTexts.ConfigurationsText}}</span>
+                                <ng-content select="[themeControl]" keepDropdownOpen></ng-content>
+                            </li>
+                            <li class="d-flex justify-content-start m-1">
+                                <span class="align-items-center d-flex px-2">Entrada</span>
+                                <ng-content select="[inputThemeControl]" keepDropdownOpen></ng-content>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button type="button" (click)="resetChat()" class="icon-container-button">
+                        <mat-icon [title]="appTexts.NewChatText">edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-content-center">
+        <AVA-virtual-assistant-robot-svg></AVA-virtual-assistant-robot-svg>
+      </div>
+  
+      <ul class="list-unstyled components">
+        <li (click)="resetChat()">
+            <a class="d-flex px-1">
+                <div class="icon-message-virtual-assistand">
+                    <img [src]="areaInformation?.faviconUrl" alt="Icono de la compañía" class="icon" width="25px">
+                </div>
+                <span>{{appTexts.ClearChatText}}</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+  
+    <!-- Page Content Holder -->
+    <div id="content">
+        <div class="header">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        @if (isMenuClosed()){
+                            <button type="button" class="icon-container-button" id="sidebarCollapse" (click)="collapseMenu()">
+                                <mat-icon [title]="appTexts.OpenSidebarText">menu</mat-icon>
+                            </button>
+    
+                            <button type="button" (click)="resetChat()" class="icon-container-button ms-2">
+                                <mat-icon [title]="appTexts.NewChatText">edit</mat-icon>
+                            </button>
+                        }
+                    </div>
+
+                    <div class="col-6 text-center">
+                        <h3 class="title d-none">{{areaInformation?.chatTitle}}</h3>
+                    </div>
+
+                    @if(areaInformation?.mainLogoUrl) {
+                        <div class="col-3 d-flex justify-content-end">
+                            <img class="header-logo" [src]="areaInformation?.mainLogoUrl" alt="logo-area-compañia">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-3">
+            <div class="col-12 container-chats">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ng-content select="[chatGemini]"></ng-content>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-content select="[chatGpt]"></ng-content>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-content select="[chatClaude]"></ng-content>
+                    </div>
+
+                    <div class="col-12 p-2">
+                        <ng-content select="[inputChat]"></ng-content>
+                    </div>
+
+                    <div class="text-center">
+                        <span>
+                            <strong>{{appTexts.ChatWarningText}}</strong>
+                        </span>
+                    </div>
+                    
+                    <ng-content select="[footer]"></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

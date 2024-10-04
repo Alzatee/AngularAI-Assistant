@@ -1,0 +1,170 @@
+
+<section class="row center-xs">
+    <div class="col-12">
+
+        @if (chats.length) {
+        <div class="card">
+            <div #scrollChat class="content-chat d-flex flex-column justify-content-between">
+                <div>
+                    <div class="chat">
+                        @for (chat of chats; track chat; let index = $index) {
+    
+                            <!-- Mensaje fijado cuando entra en modo consulta sobre archivo -->
+                            @if (modeQueryFile && index === 0) {
+                                <div class="pinned-message">
+                                    <div>
+                                        <span>
+                                            Todas las consultas a partir de ahora se realizarán sobre el archivo 
+                                            <strong [title]="storedQueryFile.documentName">{{storedQueryFile.documentName}}</strong>
+                                            @if (areaInformation?.dataBase) {
+                                                <span>
+                                                    , puedes salir de este modo en cualquier momento limpiando el chat o dando clic 
+                                                    <a href="javascript:void(0);" (click)="cleanChat()">Aquí</a>
+                                                </span>
+                                            }
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- Mensaje fijado especificando hacia cuál IA/Chatbot se hace la consulta -->
+                            @if (typeAIChatBotValue && !modeQueryFile && index === 0) {
+                                <div class="pinned-message d-flex justify-content-between align-items-center">
+                                    <div>
+                                        Estás consultando sobre 
+                                        <span [ngClass]="{ 
+                                            'ai-chatbot-gemini': typeAIChatBotValue === TypeAIChatBots.Gemini, 
+                                            'ai-chatbot-gpt': typeAIChatBotValue === TypeAIChatBots.Gpt, 
+                                            'ai-chatbot-claude': typeAIChatBotValue === TypeAIChatBots.Claude 
+                                        }">
+                                            {{typeAIChatBotValue}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-outline-secondary" href="javascript:void(0);" (click)="cleanChat()">Reiniciar el chat</button>
+                                    </div>
+                                </div>
+                            }
+        
+                            @if (chat.type === typeChats.User) {
+        
+                                <!-- Mensaje Usuario -->
+                                @if (chat.messageChat.text) {
+                                    <div class="message-user">
+                                        <div class="message-user-text"> {{ chat.messageChat.text }} </div>
+                                    </div>
+                                }
+        
+                                @if (chat.messageChat.documentName) {
+                                    <div class="message-user">
+                                        @if (fileIsImage(chat.messageChat.fileUrl)) {
+                                            <div class="message-user-text">
+                                                <img [src]="chat.messageChat.fileUrl" alt="Imagen enviada al chat" width="30px" height="30px" />
+                                                <span class="text-primary"> {{ chat.messageChat.documentName }}</span>
+                                            </div>
+                                        }
+                                        @if (fileIsOtherType(chat.messageChat.fileUrl)) {
+                                            <div class="message-user-text d-flex">
+                                                <div class="file-preview text-info">
+                                                    <mat-icon class="chat-file-icon">description</mat-icon> <!-- Ícono de documento -->
+                                                </div>
+                                                <span class="text-primary"> {{ chat.messageChat.documentName }}</span>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+        
+                                <!-- Esperando respuesta del asistente virtual -->
+                                @if (waitingAnswer && index === chats.length - 1) {
+                                    <div class="message-virtual-assistand">
+                                        <div class="icon-message-virtual-assistand">
+                                            <img [src]="areaInformation?.faviconUrl" alt="Cargando respuesta..." class="icon" alt="">
+                                        </div>
+        
+                                        <div class="loading-three-dots-animation">
+                                            <div class="snippet" data-title="dot-collision">
+                                                <div class="dot-collision"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+        
+                            } @else {
+                                <!-- Respuesta Asistente Virtual -->
+                                <div class="message-virtual-assistand">
+                                    <div class="icon-message-virtual-assistand">
+                                        <img [src]="areaInformation?.faviconUrl" alt="Imagen del asistente virtual para el chat" class="icon" alt="">
+                                    </div>
+
+                                    <div class="content-message-virtual-assistand">
+                                        <p [id]="'message-' + index" class="message-virtual-assistand-text" [innerHTML]="convertMarkdownToHtml(chat.messageChat.text)"></p>
+
+                                        <span class="time-response-api-text">{{chat.timeResponseAPI}}</span>
+
+                                        <button class="btn btn-outline-secondary speak-text-btn ms-1" type="button" (click)="speakText(chat.messageChat.text)">
+                                            <mat-icon>volume_up</mat-icon>
+                                        </button>
+                                        <button class="btn btn-outline-secondary speak-text-btn ms-1" type="button" (click)="stopSpeaking()">
+                                            <mat-icon>stop_circle</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <!-- Para usar asyng o incluso *ngIf(sintaxis vieja) u otros en Angular 17, se debe importar CommonModule -->
+                @if( (isChatInputUnique$ | async) === false ) {
+                    <div class="container-input-chat">
+                        <AVA-chat-input-component [clearInputChat]="clearInputChat" [waitingAnswer]="waitingAnswer"
+                            (sendMessageEmitter)="sendMessageEmitter($event)">
+                        </AVA-chat-input-component>
+                    </div>
+                }
+            </div>
+        </div>
+        } @else {
+            <div class="card">
+                <div class="card">
+                    <div class="content-chat d-flex flex-column justify-content-between">
+                        <div class="content-text-chat d-flex justify-content-center align-items-center flex-grow-1">
+                            <div class="chat">
+                                <h3 class="title">{{areaInformation?.chatTitle}}</h3>
+                                
+                                @if (areaInformation?.chatDescription) {
+                                    <p class="presentation-text">
+                                        {{areaInformation?.chatDescription}}
+
+                                        @if (typeAIChatBotValue) {
+                                            <span [ngClass]="{ 
+                                                'ai-chatbot-gemini': typeAIChatBotValue === TypeAIChatBots.Gemini, 
+                                                'ai-chatbot-gpt': typeAIChatBotValue === TypeAIChatBots.Gpt, 
+                                                'ai-chatbot-claude': typeAIChatBotValue === TypeAIChatBots.Claude 
+                                            }">
+                                                {{typeAIChatBotValue}}
+                                            </span>
+                                        }
+                                    </p>
+                                } @else {
+                                    <div class="alert alert-danger text-center">
+                                        {{errorMessages.AreaNotFoundErrorMessage}}
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        
+                        <!-- Para usar asyng o incluso *ngIf(sintaxis vieja) u otros en Angular 17, se debe importar CommonModule -->
+                        @if( (isChatInputUnique$ | async) === false ) {
+                            <div class="container-input-chat">
+                                <AVA-chat-input-component [clearInputChat]="clearInputChat" [waitingAnswer]="waitingAnswer"
+                                    (sendMessageEmitter)="sendMessageEmitter($event)">
+                                </AVA-chat-input-component>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>

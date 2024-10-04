@@ -1,0 +1,64 @@
+@if (themeApplied) {
+  <AVA-virtual-assistand-menu (resetChatEmitter)="resetChatEmitter($event)">
+    <div class="dropdown" themeControl>
+        <button class="btn dropdown-toggle dropdown-button-toggle w-100" type="button" id="dropdownthemeControl" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ currentTheme === 'light' ? 'Claro' : currentTheme === 'dark' ? 'Oscuro' : 'Sistema' }}
+        </button>
+        <ul class="dropdown-menu w-100" aria-labelledby="dropdownthemeControl">
+          <li>
+            <a class="dropdown-item d-flex justify-content-between align-items-center" (click)="setTheme('light')"> Claro
+              @if (currentTheme === 'light') { <mat-icon class="ms-2">check</mat-icon> }
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex justify-content-between align-items-center" (click)="setTheme('dark')"> Oscuro
+              @if (currentTheme === 'dark') { <mat-icon class="ms-2">check</mat-icon> }
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex justify-content-between align-items-center" (click)="setTheme('system')"> Sistema
+              @if (currentTheme === 'system') { <mat-icon class="ms-2">check</mat-icon> }
+            </a>
+          </li>
+        </ul>
+    </div>
+
+    <div class="dropdown" inputThemeControl>
+      <button class="btn dropdown-toggle dropdown-button-toggle w-100" type="button" id="dropdowninputThemeControl" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ (isChatInputUnique$ | async) === true ? 'Compartida' : 'Individual' }}
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="dropdowninputThemeControl">
+        <li>
+          <a class="dropdown-item d-flex justify-content-between align-items-center" (click)="configureChatInputType(true)"> Compartida
+            @if ((isChatInputUnique$ | async) === true) { <mat-icon class="ms-2">check</mat-icon> }
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item d-flex justify-content-between align-items-center" (click)="configureChatInputType(false)"> Individual
+            @if ((isChatInputUnique$ | async) === false) { <mat-icon class="ms-2">check</mat-icon> }
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <AVA-virtual-assistand-chat chatGemini [resetChat]="resetChat" [typeAIChatBot]="typeChatbot.Gemini" [messageEmitter]="messageEmitter" 
+      (clearInputChatEmit)="clearInputChatEmit($event)" (waitingAnswerEmit)="waitingAnswerEmit($event)">
+    </AVA-virtual-assistand-chat>
+
+    <AVA-virtual-assistand-chat chatGpt [resetChat]="resetChat" [typeAIChatBot]="typeChatbot.Gpt" [messageEmitter]="messageEmitter"
+      (clearInputChatEmit)="clearInputChatEmit($event)" (waitingAnswerEmit)="waitingAnswerEmit($event)">
+    </AVA-virtual-assistand-chat>
+    
+    <AVA-virtual-assistand-chat chatClaude [resetChat]="resetChat" [typeAIChatBot]="typeChatbot.Claude" [messageEmitter]="messageEmitter"
+      (clearInputChatEmit)="clearInputChatEmit($event)" (waitingAnswerEmit)="waitingAnswerEmit($event)">
+    </AVA-virtual-assistand-chat>
+
+    <!-- Para usar asyng o incluso *ngIf(sintaxis vieja) u otros en Angular 17, se debe importar CommonModule -->
+    @if( isChatInputUnique$ | async ) {
+      <AVA-chat-input-component inputChat (sendMessageEmitter)="sendMessageEmitter($event)" [clearInputChat]="clearInputChat" [waitingAnswer]="waitingAnswer">
+      </AVA-chat-input-component>
+    }
+
+    <AVA-footer footer></AVA-footer>
+  </AVA-virtual-assistand-menu>
+}

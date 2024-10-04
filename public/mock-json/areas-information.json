@@ -1,0 +1,56 @@
+{
+  "areas": [
+    {
+      "name": "AAE AlzateEA",
+      "code": "cHJ1ZWJhLWNvZGlnbw==",
+      "primaryColor": "#8A6338",
+      "chatTitle": "Asistente virtual AAE",
+      "chatDescription": "¡Hola! Soy el asistente virtual AVA del Área AAE, en este escenario podrás interactuar con la IA de ",
+      "mainLogoUrl": "areas/images/aae-logo.png",
+      "faviconUrl": "areas/icons/aee-logo.ico",
+      "dataBase": true,
+      "query_prompt_template": true,
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "max_context": 4,
+      "chunk_size": 0,
+      "chunk_overlap": 0,
+      "valor_area": "por_definir"
+    },
+    {
+      "name": "SoftwareOne",
+      "code": "cHJ1ZWJhLWNvZGlnby11bm8=",
+      "primaryColor": "#D52D45",
+      "chatTitle": "Asistente virtual SWO",
+      "chatDescription": "¡Hola! Soy el asistente virtual AVA del Área SoftwareONE, en este escenario podrás interactuar con la IA de ",
+      "mainLogoUrl": "areas/images/softwareone-logo.png",
+      "faviconUrl": "areas/icons/software-one.ico",
+      "dataBase": true,
+      "query_prompt_template": true,
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "max_context": 4,
+      "chunk_size": 0,
+      "chunk_overlap": 0,
+      "valor_area": "por_definir"
+    },
+    {
+      "name": "Intergrupo",
+      "code": "cHJ1ZWJhLWNvZGlnby1kb3M=",
+      "primaryColor": "#0897CC",
+      "chatTitle": "Asistente virtual IG",
+      "chatDescription": "¡Hola! Soy el asistente virtual AVA del Área Intergrupo, en este escenario podrás interactuar con la IA de ",
+      "mainLogoUrl": "areas/images/intergrupo-logo.png",
+      "faviconUrl": "areas/icons/intergrupo.ico",
+      "dataBase": false,
+      "query_prompt_template": true,
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "max_context": 4,
+      "chunk_size": 0,
+      "chunk_overlap": 0,
+      "valor_area": "por_definir"
+    }
+  ],
+  "message": "Exitoso/Error"
+}

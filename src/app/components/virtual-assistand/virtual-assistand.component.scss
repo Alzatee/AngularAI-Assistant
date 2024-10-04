@@ -1,0 +1,28 @@
+.dropdown-menu {
+    width: 100%;
+}
+
+.dropdown-menu li {
+    cursor: pointer;
+}
+
+.dropdown-item:active {
+    background-color: transparent;
+    color: #222222;
+}
+
+.dropdown-item mat-icon {
+    margin-left: auto;
+}
+
+.dropdown-toggle,
+.dropdown-toggle:active {
+    background: #ffffff;
+    border: none;
+    color: #222222;
+}
+
+.dropdown-button-toggle {
+    background: #EEEEEE;
+    color: #222222;
+}

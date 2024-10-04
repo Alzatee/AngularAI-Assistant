@@ -1,0 +1,10 @@
+{
+  "/api-swo-aws-claude": {
+    "target": "https://oqbudeigqu54u6bq7nmso6pyr40atarg.lambda-url.us-east-1.on.aws/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "timeout": 500000,
+    "proxyTimeout": 500000
+  }
+}

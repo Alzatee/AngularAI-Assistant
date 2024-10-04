@@ -1,0 +1,22 @@
+/* -- PHONES AND TABLES MEDIA -- */
+@media screen and (max-width: 768px) {
+    .container-chats {
+        padding: 0px 10px !important;
+    }
+    .content-chat {
+        min-height: 77vh !important;
+        height: 77vh !important;
+    }
+    .chat, .input-chat-container {
+        width: 100% !important;
+    }
+    #sidebar {
+        position: fixed;
+        height: 100%;
+        box-shadow: 3px 0 10px rgb(0 0 0 / 78%) !important;
+    }
+    .header-logo {
+        width: auto;
+    }
+}
+  
