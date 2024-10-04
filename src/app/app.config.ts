@@ -9,6 +9,7 @@ import { AuthInterceptor } from '@core/interceptor/auth.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideClientHydration(), 
     provideRouter(
       routes,
       withHashLocation(),
@@ -20,7 +21,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([AuthInterceptor]),
       withFetch()
     ),
-    provideClientHydration(), 
     provideAnimationsAsync(),
     importProvidersFrom(BrowserModule)
   ]
