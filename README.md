@@ -1,8 +1,8 @@
 URL PROYECTO DEMO, CON EJEMPLO DE DISTINTAS EMPRESAS/AREAS:
 (La url recibe el parámetro que le indica qué empresa/area está accediendo)
-https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnbw==
-https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnby11bm8=
-https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnby1kb3M=
+- https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnbw==
+- https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnby11bm8=
+- https://alzatee.github.io/AngularAI-Assistant/#/virtual-assistand?area=cHJ1ZWJhLWNvZGlnby1kb3M=
 
 DESCRIPCIÓN BREVE: Proyecto Freelance para generar un chat o asistente virtual con IA.
 Notas: 
